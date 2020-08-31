@@ -1,42 +1,13 @@
-// $(document).ready(function () {
-
-//     var url = "https://randomuser.me/api/?results=5";
-//     var p = "";
-//     var radioValue;
-//     var loadMore;
-
-// });
-// fetch("https://randomuser.me/api/?results=5")
-//     .then((response) => response.json())
-//     .then(function (data) {
-//         url = "https://randomuser.me/api/?results=5";
-//         fetchInformation("https://randomuser.me/api/?results=5");
-//     })
-// $.ajax({
-//     url: 'https://randomuser.me/api/',
-//     dataType: 'json',
-//     success: function (data) {
-//         console.log(data);
-//     }
-// });
-
-//const ul = document.getElementById('family'); // Get the list to place family members
-//const url = 'https://randomuser.me/api/?results=5'; // Get 5 family members
-// fetch(url)
-//   .then((resp) => resp.json()) // Transform the data into json
-//   .then(function(data) {
-//     // Create and append the li's to the ul
-//     })
-//   })
-//   function createNode(element) {
-//     return document.createElement(element);
-// }
+function createNode(element) {
+    return document.createElement(element);
+}
 
 function append(parent, el) {
     return parent.appendChild(el);
 }
 
 const ul = document.getElementById('families');
+const ul2 = document.getElementById('families2');
 const url = 'https://randomuser.me/api/?results=5';
 fetch(url)
     .then((resp) => resp.json())
@@ -47,13 +18,41 @@ fetch(url)
                 img = createNode('img'),
                 span = createNode('span');
             img.src = family.picture.medium;
-            span.innerHTML = `${family.name.first} ${family.name.last}`;
+            span.innerHTML = `${family.name.first} ${family.name.last} ${family.email}`;
             append(li, img);
             append(li, span);
             append(ul, li);
+            let names = `${family.name.first}`;
+            let emails = `${family.email}`;
+            let birthday = `${family.dob.date}`;
+            let cell = `${family.cell}`;
+            let dataArray = `${family.name.first} ${family.name.last} ${family.email} ${family.dob.date} ${family.cell}`;
+            console.log(dataArray)
         })
 
     })
-    // .catch(function (error) {
-    //     console.log(JSON.stringify(error));
-    // });   
+// .catch(function (error) {
+//     console.log(JSON.stringify(error));
+// });   
+fetch(url)
+    .then((resp) => resp.json())
+    .then(function (data) {
+        let families2 = data.results;
+        return families2.map(function (family) {
+            let li = createNode('li'),
+                img = createNode('img'),
+                span = createNode('span');
+            img.src = family.picture.medium;
+            span.innerHTML = `${family.name.first} ${family.name.last} ${family.email}`;
+            append(li, img);
+            append(li, span);
+            append(ul2, li);
+            let dataArray2 = `${family.name.first} ${family.name.last} ${family.email} ${family.dob.date} ${family.cell}`;
+            console.log(dataArray2);
+        })
+
+    })
+
+
+
+    // https://randomuser.me/api/1.3/?format=pretty&inc=name,email,dob,location,cell&seed=myseed&results=10
