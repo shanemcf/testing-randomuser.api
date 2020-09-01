@@ -1,3 +1,4 @@
+
 function createNode(element) {
     return document.createElement(element);
 }
@@ -24,10 +25,13 @@ fetch(url)
             append(ul, li);
             let names = `${family.name.first}`;
             let emails = `${family.email}`;
-            let birthday = `${family.dob.date}`;
+            let birthdate = `${family.dob.date}`;
             let cell = `${family.cell}`;
             let dataArray = `${family.name.first} ${family.name.last} ${family.email} ${family.dob.date} ${family.cell}`;
-            console.log(dataArray)
+            let familyMember = { names, emails, birthdate, cell }
+            console.log(dataArray, JSON.stringify(family.cell));
+            console.log(familyMember) // familyMember is returned json as array
+
         })
 
     })
@@ -52,6 +56,8 @@ fetch(url)
         })
 
     })
+
+
 
 
 
